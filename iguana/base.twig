@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html>
+    <head>
+        <link rel="shortcut icon" href="{{ base_url }}/assets/image/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="{{ base_url }}/assets/image/favicon.ico" type="image/x-icon">
+        <meta charset="utf-8">
+        <title>{{ site_title }}</title>
+        <html xmlns="http://www.w3.org/1999/xhtml">
+        <meta name="keywords" content="" />
+        <meta name="description" content="" />
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <link href="{{ base_url }}/themes/iguana/style.css" rel="stylesheet" type="text/css" media="screen" />
+    </head>
+    <body>
+        <div id="wrapper">
+        	<div id="menu">
+        		<ul>
+                    {% for page in pages|sort_by("meta:main"|split(":")) %}
+                        {% if not (page.id starts with "episode/" or page.id starts with "blog/") %}
+                            {% if (page.id == meta.template) %}
+                                <li class="current_page_item"><a href="{{ base_url }}/{{ page.id }}">{{ (page.id == 'index') ? 'home' : page.id }}</a></li>
+                            {% else %}
+                                <li><a href="{{ base_url }}/{{ page.id }}">{{ (page.id == 'index') ? 'home' : page.id }}</a></li>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+        		</ul>
+        	</div>
+        	<!-- end #menu -->
+        	<div id="header">
+        		<div id="logo">
+        			<h1><a href="index">Rolling For Change</a></h1>
+        		</div>
+        	</div>
+            <div id="banner"><img src="{{ base_url }}/assets/image/{{ meta.banner }}" width="900" height="400" alt="" /></div>
+        	<!-- end #header -->
+            <div id="page">
+        		<div class="featured-post">
+                    {% block content %}
+                    {% endblock %}
+        		</div>
+            </div>
+    </div>
+        <div id="footer">
+        	<p>&copy; Rolling For Change, LLC. All rights reserved. Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.</p>
+        </div>
+    </body>
+</html>

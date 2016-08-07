@@ -1,0 +1,24 @@
+{% extends "base.twig" %}
+
+{% block content %}
+    {{ content }}
+
+    <div id="content">
+        <div class="post">
+            <h2 class="title">Latest Podcast</h2>
+            <h3 class="title"><a href="{{ base_url }}/episode/{{ episodes[0].address }}">{{ episodes[0].title }}</a></h3>
+            <div class="entry">
+                <p>{{ episodes[0].excerpt }}</p>
+                <button class="more">Read More</button>
+            </div>
+        </div>
+        <div class="post">
+            <h2 class="title">Latest Blog Post</h2>
+            <h3 class="title"><a href="#">Coming Soon</a></h3>
+            <div class="entry">
+                <p>Coming Soon</p>
+                <button class="more">Read More</button>
+            </div>
+        </div>
+    </div>
+{% endblock %}

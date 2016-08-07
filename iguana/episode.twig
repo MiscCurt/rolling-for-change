@@ -1,0 +1,6 @@
+{% extends "base.twig" %}
+
+{% block content %}
+    <h2 class="title">{{ meta.title }}</h2>
+    {{ content|replace({'(excerpt)': ''}) }}
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "base.twig" %}
+
+{% block content %}
+    <h2 class="title">{{ meta.title }}</h2>
+    {{ content }}
+
+    <ol class="posts">
+        {% for blog in blogs %}
+            <li class="blogs">{{ blog.title }}</li>
+        {% endfor %}
+    </ol>
+{% endblock %}
