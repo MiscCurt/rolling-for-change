@@ -3,4 +3,9 @@
 {% block content %}
     <h2 class="title">{{ meta.title }}</h2>
     {{ content|replace({'(excerpt)': ''}) }}
+
+    <audio controls>
+        <source src="{{base_url}}/assets/sound/{{ meta.sound}}" type="audio/mpeg">
+    </audio>
+
 {% endblock %}
