@@ -6,10 +6,10 @@
     <div id="content">
         <div class="post">
             <h2 class="title">Latest Podcast</h2>
-            <h3 class="title"><a href="{{ base_url }}/episode/{{ episodes[0].address }}">{{ episodes[0].title }}</a></h3>
+            <h3 class="title"><a href="{{ episodes[0].address }}">{{ episodes[0].title }}</a></h3>
             <div class="entry">
                 <p>{{ episodes[0].excerpt }}</p>
-                <button class="more">Read More</button>
+                <button class="more" onclick="location.href='{{ episodes[0].address }}'">Read More</button>
             </div>
         </div>
         <div class="post">
