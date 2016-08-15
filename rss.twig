@@ -2,29 +2,29 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:cc="http://web.resource.org/cc/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:media="http://search.yahoo.com/mrss/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 	<channel>
 		<atom:link href="{{ rss.url }}" rel="self" type="application/rss+xml"/>
-		<title>{{ site_title }}</title>
+		<title>{{ rss.title }}</title>
         <pubDate>{{ rss.published }}</pubDate>
 		<lastBuildDate>{{ rss.lastBuildDate }}</lastBuildDate>
 		<link>{{ base_url }}</link>
 	    <language>{{ rss.language }}</language>
 		<copyright>{{ rss.copyright }}</copyright>
 		<managingEditor>{{ rss.editor.name }}{% if rss.editor.email is defined %} ({{ rss.editor.email }}){% endif %}</managingEditor>
-		<description>Soundscape was born out of a passion for music and a love of the journey. Twice a month we develop a theme for exploration within the music. These themes could be about a particular kind of music, a single artist or band, or even something more expansive such as a the theme of flying. Really anything is fair game here. To develop this journey we rely on progressive rock, and improvisational/experimental music. We also rely on our listeners to help us bring the experience alive with their own suggestions. The Soundscape podcast has now been running for over 8 years and the inspiration for these journeys grows and evolves beyond anything we could have imagined. Your hosts Suzi and Woody Harris have had many years of experience in music from DJing to running a music store. We look forward to your participation in our adventure.</description>
+		<description>{{ rss.description }}</description>
 		<image>
-			<url>http://www.soundscapeprog.com/images/itunescover.jpg</url>
-			<title>Soundscape</title>
-			<link>http://www.soundscapeprog.com</link>
+			<url>{{ base_url }}/{{ rss.image }}</url>
+			<title>{{ rss.title }}</title>
+			<link>{{ base_url }}</link>
 		</image>
-		<itunes:author>Woody and Suzi Harris</itunes:author>
-		<itunes:keywords>music,soundscape,progressiverock,progrock,exploration,improvisational,experimental</itunes:keywords>
-		<itunes:category text="Music"/>
-		<itunes:image href="http://www.soundscapeprog.com/images/itunescover.jpg" />
-		<itunes:explicit>clean</itunes:explicit>
+		<itunes:author>{{ rss.author }}</itunes:author>
+		<itunes:keywords>{{ rss.keywords }}</itunes:keywords>
+		<itunes:category text="{{ rss.category }}"/>
+		<itunes:image href="{{ base_url }}/{{ rss.image }}" />
+		<itunes:explicit>{{ rss.explicit }}</itunes:explicit>
 		<itunes:owner>
-			<itunes:name>Woody and Suzi Harris</itunes:name>
-			<itunes:email>soundscape@progrock.com</itunes:email>
+			<itunes:name>{{ rss.owner.name }}</itunes:name>
+			<itunes:email>{{ rss.owner.email }}</itunes:email>
 		</itunes:owner>
-		<itunes:subtitle>A progressive rock podcast broadcasting every other Sunday at 11:00 AM EST</itunes:subtitle>
+		<itunes:subtitle>{{ rss.subtitle }}</itunes:subtitle>
 
 <!--
 		<item>
