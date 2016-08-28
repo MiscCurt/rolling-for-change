@@ -11,14 +11,14 @@
 		<managingEditor>{{ rss.editor.name }}{% if rss.editor.email is defined %} ({{ rss.editor.email }}){% endif %}</managingEditor>
 		<description>{{ rss.description }}</description>
 		<image>
-			<url>{{ base_url }}/{{ rss.image }}</url>
+			<url>{{ rss.image }}</url>
 			<title>{{ rss.title }}</title>
 			<link>{{ base_url }}</link>
 		</image>
 		<itunes:author>{{ rss.author }}</itunes:author>
 		<itunes:keywords>{{ rss.keywords }}</itunes:keywords>
 		<itunes:category text="{{ rss.category }}"/>
-		<itunes:image href="{{ base_url }}/{{ rss.image }}" />
+		<itunes:image href="{{ rss.image }}" />
 		<itunes:explicit>{{ rss.explicit }}</itunes:explicit>
 		<itunes:owner>
 			<itunes:name>{{ rss.owner.name }}</itunes:name>
@@ -31,22 +31,15 @@
             <title>{{ episode.title }}</title>
             <pubDate> {{ episode.getFormattedDate }}</pubdate>
             <guid isPermaLink="false">{{ episode.guid }}</guid>
+			<link>{{ episode.link }}</link>
+			<itunes:image href="{{ episode.thumbnailImage }}" />
+			<description><![CDATA[{{ episode.description }}]]></description>
+			<enclosure length="{{ episode.size }}" type="audio/mpeg" url="{{ episode.sound }}" />
+			<itunes:duration>{{ episode.length }}</itunes:duration>
+			<itunes:explicit>{{ episode.explicit }}</itunes:explicit>
+			<itunes:keywords />
+			<itunes:subtitle>{{ episode.excerpt }}/itunes:subtitle>
         </item>
         {% endfor %}
-<!--
-		<item>
-			<title>Soundscape ~episodenumber~: ~episodetitle~</title>
-			<pubDate>~episodeday~, ~episodedate~ ~episodetime~ EST</pubDate>
-			<guid isPermaLink="false">~episodeguid~</guid>
-			<link>http://soundscapeprog.com/episodes/~episodepage~.html</link>
-			<itunes:image href="http://soundscapeprog.com/episodes/images/~thumbnailimage~.jpg" />
-			<description><![CDATA[~description~]]></description>
-			<enclosure length="~mp3size~" type="audio/mpeg" url="http://www.soundscapeprog.com/episodes/~mp3file~.mp3" />
-			<itunes:duration>~mp3length~</itunes:duration>
-			<itunes:explicit>no</itunes:explicit>
-			<itunes:keywords />
-			<itunes:subtitle>~episodeteaser~</itunes:subtitle>
-		</item>
--->
 	</channel>
 </rss>
