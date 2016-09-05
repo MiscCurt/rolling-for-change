@@ -31,7 +31,11 @@
         			<h1><a href="index">Rolling For Change</a></h1>
         		</div>
         	</div>
-            <div id="banner"><img src="{{ base_url }}/assets/image/{{ meta.banner }}" width="900" height="400" alt="" /></div>
+            <div id="banner">
+                {% block banner %}
+                    <img src="{{ base_url }}/assets/image/{{ meta.banner }}" width="900" height="400" alt="" />
+                {% endblock %}
+            </div>
         	<!-- end #header -->
             <div id="page">
         		<div class="featured-post">

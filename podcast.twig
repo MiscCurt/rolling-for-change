@@ -1,19 +1,24 @@
 {% extends "base.twig" %}
 
 {% block content %}
-    <h2 class="title">{{ meta.title }}</h2>
+    {% if meta.title is defined %}
+        <h2 class="title">{{ meta.title }}</h2>
+    {% endif %}
+
     {{ content }}
 
     <ol class="episodes">
         {% for episode in episodes %}
             <li class="episodes">
                 <div class="episode-image">
-                    <a href="{{ episode.address }}">
-                    <img src="{{ base_url }}/assets/image/{{ episode.thumbnailImage }}" width="150" height="150">
-                    </a>
+                    {% if episode.thumbnail is defined %}
+                        <a href="{{ episode.link }}">
+                            <img src="{{ episode.thumbnail }}" width="150" height="150">
+                        </a>
+                    {% endif %}
                 </div>
                 <div class="episode-text">
-                    <a href="{{ episode.address }}">
+                    <a href="{{ episode.link }}">
                         <h3>{{ episode.title }}</h3>
                     </a>
                     {{ episode.excerpt }}

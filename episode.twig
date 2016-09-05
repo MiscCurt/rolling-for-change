@@ -1,12 +1,17 @@
 {% extends "base.twig" %}
 
-{% block content %}
-    <h2 class="title">{{ meta.title }}</h2>
-    {{ content|replace({'(excerpt)': ''}) }}
+{% block banner %}
+    <img src="{{ episode.banner }}" width="900" height="400" alt="" />
+{% endblock %}
 
-    {% if meta.sound is defined %}
+{% block content %}
+    <h2 class="title">{{ episode.title }}</h2>
+
+    {{ content|replace({'(excerpt)': ' '}) }}
+
+    {% if episode.sound is defined %}
         <audio controls>
-            <source src="{{ base_url }}/assets/sound/{{ meta.sound }}" type="audio/mpeg">
+            <source src="{{ episode.sound }}" type="audio/mpeg">
         </audio>
     {% endif %}
 

@@ -1,45 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:cc="http://web.resource.org/cc/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:media="http://search.yahoo.com/mrss/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 	<channel>
-		<atom:link href="{{ rss.url }}" rel="self" type="application/rss+xml"/>
-		<title>{{ rss.title }}</title>
-        <pubDate>{{ rss.published }}</pubDate>
-		<lastBuildDate>{{ rss.lastBuildDate }}</lastBuildDate>
-		<link>{{ base_url }}</link>
-	    <language>{{ rss.language }}</language>
-		<copyright>{{ rss.copyright }}</copyright>
-		<managingEditor>{{ rss.editor.name }}{% if rss.editor.email is defined %} ({{ rss.editor.email }}){% endif %}</managingEditor>
-		<description>{{ rss.description }}</description>
+		<atom:link href="{{ feed.url }}" rel="self" type="application/rss+xml"/>
+		<title>{{ feed.title }}</title>
+        <pubDate>{{ earliestEpisode.getFormattedDate }}</pubDate>
+		<lastBuildDate>{{ latestEpisode.getFormattedDate }}</lastBuildDate>
+		<link>{{ feed.site }}</link>
+	    <language>{{ feed.language }}</language>
+		<copyright>{{ feed.copyright }}</copyright>
+		<managingEditor>{{ feed.editor.name }}{% if feed.editor.email is defined %} ({{ feed.editor.email }}){% endif %}</managingEditor>
+		<description>{{ feed.description }}</description>
 		<image>
-			<url>{{ rss.image }}</url>
-			<title>{{ rss.title }}</title>
-			<link>{{ base_url }}</link>
+			<url>{{ feed.image }}</url>
+			<title>{{ feed.title }}</title>
+			<link>{{ feed.site }}</link>
 		</image>
-		<itunes:author>{{ rss.author }}</itunes:author>
-		<itunes:keywords>{{ rss.keywords }}</itunes:keywords>
-		<itunes:category text="{{ rss.category }}"/>
-		<itunes:image href="{{ rss.image }}" />
-		<itunes:explicit>{{ rss.explicit }}</itunes:explicit>
+		<itunes:author>{{ feed.author }}</itunes:author>
+		<itunes:keywords>{{ feed.keywords }}</itunes:keywords>
+		<itunes:category text="{{ feed.category }}"/>
+		<itunes:image href="{{ feed.image }}" />
+		<itunes:explicit>{{ feed.explicit }}</itunes:explicit>
 		<itunes:owner>
-			<itunes:name>{{ rss.owner.name }}</itunes:name>
-			<itunes:email>{{ rss.owner.email }}</itunes:email>
+			<itunes:name>{{ feed.owner.name }}</itunes:name>
+			<itunes:email>{{ feed.owner.email }}</itunes:email>
 		</itunes:owner>
-		<itunes:subtitle>{{ rss.subtitle }}</itunes:subtitle>
+		<itunes:subtitle>{{ feed.subtitle }}</itunes:subtitle>
 
         {% for episode in episodes %}
-        <item>
-            <title>{{ episode.title }}</title>
-            <pubDate> {{ episode.getFormattedDate }}</pubdate>
-            <guid isPermaLink="false">{{ episode.guid }}</guid>
-			<link>{{ episode.link }}</link>
-			<itunes:image href="{{ episode.thumbnailImage }}" />
-			<description><![CDATA[{{ episode.description }}]]></description>
-			<enclosure length="{{ episode.size }}" type="audio/mpeg" url="{{ episode.sound }}" />
-			<itunes:duration>{{ episode.length }}</itunes:duration>
-			<itunes:explicit>{{ episode.explicit }}</itunes:explicit>
-			<itunes:keywords />
-			<itunes:subtitle>{{ episode.excerpt }}/itunes:subtitle>
-        </item>
+			{% if episode.sound is defined and episode.sound is not empty %}
+		        <item>
+		            <title>{{ episode.title }}</title>
+		            <pubDate> {{ episode.getFormattedDate }}</pubdate>
+		            <guid isPermaLink="false">{{ episode.guid }}</guid>
+					<link>{{ episode.link }}</link>
+					<itunes:image href="{{ episode.thumbnailImage }}" />
+					<description><![CDATA[{{ episode.description }}]]></description>
+					<enclosure length="{{ episode.size }}" type="audio/mpeg" url="{{ episode.sound }}" />
+					<itunes:duration>{{ episode.length }}</itunes:duration>
+
+					{% if episode.explicit is defined and episode.explicit is not empty %}
+						<itunes:explicit>{{ episode.explicit }}</itunes:explicit>
+					{% endif %}
+					
+					<itunes:keywords />
+					<itunes:subtitle>{{ episode.excerpt }}/itunes:subtitle>
+		        </item>
+			{% endif %}
         {% endfor %}
 	</channel>
 </rss>
